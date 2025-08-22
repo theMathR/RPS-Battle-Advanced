@@ -79,7 +79,10 @@ alignment = 1
 
 [node name="Label" type="Label" parent="Ready/VBoxContainer"]
 layout_mode = 2
-text = "Ready?"
+text = "Press Q for rock, W for paper, E for scissors.
+Higher combo = higher damage.
+
+Ready?"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="Ready/VBoxContainer"]

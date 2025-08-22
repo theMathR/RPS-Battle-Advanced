@@ -14,5 +14,11 @@ var combo: int = 0:
 
 var action: Action
 
+func _ready() -> void:
+	hp = 20
+	combo = 0
+	action = Action.NONE
+	$Action.text = ""
+	
 func tick() -> void:
 	$Action.text = ['Nothing.', 'Rock!', 'Paper!', 'Scissors!'][action]

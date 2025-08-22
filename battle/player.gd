@@ -2,6 +2,7 @@ extends Player
 
 func _ready() -> void:
 	$Name.text = "Player"
+	super._ready()
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("rock"):
