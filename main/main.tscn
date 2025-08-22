@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c670lsy4m08q2"]
+
+[ext_resource type="PackedScene" uid="uid://ctivx1flti314" path="res://battle/battle.tscn" id="1_53q0u"]
+
+[node name="Game" type="Node"]
+
+[node name="Battle" parent="." instance=ExtResource("1_53q0u")]
+anchors_preset = 15

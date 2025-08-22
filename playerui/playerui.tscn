@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bu46ui05x83bc"]
+
+[node name="Player" type="VBoxContainer"]
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"HeaderLarge"
+text = "Player 1"
+
+[node name="HP" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "HP: 20"
+
+[node name="Combo" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Combo: 0"
+
+[node name="Action" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Rock!"
+horizontal_alignment = 1
+vertical_alignment = 1

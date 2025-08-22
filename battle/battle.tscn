@@ -1,0 +1,152 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctivx1flti314"]
+
+[ext_resource type="Script" uid="uid://bebvewasq7ehy" path="res://battle/battle_menu.gd" id="1_6hnvb"]
+[ext_resource type="Texture2D" uid="uid://cuuhkrle3ckct" path="res://battle/timer.png" id="1_mqutd"]
+[ext_resource type="PackedScene" uid="uid://bu46ui05x83bc" path="res://playerui/playerui.tscn" id="1_tiqy5"]
+[ext_resource type="Script" uid="uid://c52cacb27c6ln" path="res://battle/battle.gd" id="2_4mnim"]
+[ext_resource type="Script" uid="uid://ciioes8rhs030" path="res://battle/timer_progress.gd" id="4_4mnim"]
+[ext_resource type="Script" uid="uid://cialcy4qiu4bq" path="res://battle/player.gd" id="4_l1kiu"]
+[ext_resource type="Script" uid="uid://bo0lf8du2ytyv" path="res://battle/ai.gd" id="7_7fucf"]
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6hnvb")
+
+[node name="Main" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_4mnim")
+
+[node name="Player1" parent="Main" instance=ExtResource("1_tiqy5")]
+layout_mode = 2
+script = ExtResource("4_l1kiu")
+
+[node name="TimerProgress" type="TextureProgressBar" parent="Main"]
+layout_mode = 2
+size_flags_horizontal = 4
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("1_mqutd")
+script = ExtResource("4_4mnim")
+
+[node name="Player2" parent="Main" instance=ExtResource("1_tiqy5")]
+layout_mode = 2
+script = ExtResource("7_7fucf")
+
+[node name="Timer" type="Timer" parent="Main"]
+
+[node name="Gray" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.160784)
+
+[node name="Ready" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = -159.0
+offset_right = 233.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ready"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Ready/VBoxContainer"]
+layout_mode = 2
+text = "Ready?"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Ready/VBoxContainer"]
+layout_mode = 2
+text = "GO"
+
+[node name="Lost" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = -159.0
+offset_right = 233.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Lost"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Lost/VBoxContainer"]
+layout_mode = 2
+text = "You lost!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Lost/VBoxContainer"]
+layout_mode = 2
+text = "GO"
+
+[node name="Win" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = -159.0
+offset_right = 233.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Win"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Win/VBoxContainer"]
+layout_mode = 2
+text = "You won!"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Win/VBoxContainer"]
+layout_mode = 2
+text = "PLAY AGAIN"
+
+[connection signal="battle_end" from="Main" to="." method="_on_battle_end"]
+[connection signal="timeout" from="Main/Timer" to="Main" method="tick"]
+[connection signal="pressed" from="Ready/VBoxContainer/Button" to="." method="play"]
+[connection signal="pressed" from="Ready/VBoxContainer/Button" to="Ready" method="hide"]
+[connection signal="pressed" from="Lost/VBoxContainer/Button" to="." method="play"]
+[connection signal="pressed" from="Lost/VBoxContainer/Button" to="Lost" method="hide"]
+[connection signal="pressed" from="Win/VBoxContainer/Button" to="." method="play"]
+[connection signal="pressed" from="Win/VBoxContainer/Button" to="Win" method="hide"]
